@@ -1,0 +1,106 @@
+version: '3.8'
+
+# ==============================================================================
+# ClimateShield Full-Stack Docker Compose Orchestration
+# Orchestrates all 5 architectural layers:
+#   1. data-layer: Ingestion and historical baseline management daemon
+#   2. risk-engine: Deterministic threshold & ML zoning daemon
+#   3. integration-layer: LMS action queue and audit ledger verifier
+#   4. api: FastAPI Gateway service with security middleware and metrics
+#   5. frontend: React + Tailwind CSS Risk Management Dashboard
+# ==============================================================================
+
+services:
+  data-layer:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.data-layer
+    container_name: climateshield-data-layer
+    env_file:
+      - infra/env/.env.dev.example
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    networks:
+      - climateshield-network
+
+  risk-engine:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.risk-engine
+    container_name: climateshield-risk-engine
+    env_file:
+      - infra/env/.env.dev.example
+    depends_on:
+      - data-layer
+    restart: unless-stopped
+    networks:
+      - climateshield-network
+
+  integration-layer:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.integration-layer
+    container_name: climateshield-integration-layer
+    env_file:
+      - infra/env/.env.dev.example
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - data-layer
+    restart: unless-stopped
+    networks:
+      - climateshield-network
+
+  api:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.api
+    container_name: climateshield-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - infra/env/.env.dev.example
+    volumes:
+      - ./data:/app/data
+      - ./api:/app/api
+      - ./packages/shared:/app/packages/shared
+    depends_on:
+      - data-layer
+      - risk-engine
+      - integration-layer
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - climateshield-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.frontend
+    container_name: climateshield-frontend
+    ports:
+      - "5173:5173"
+    env_file:
+      - infra/env/.env.dev
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000/api/v1
+    volumes:
+      - ./frontend:/app/frontend
+      - /app/frontend/node_modules
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - climateshield-network
+
+networks:
+  climateshield-network:
+    name: climateshield-network
+    driver: bridge

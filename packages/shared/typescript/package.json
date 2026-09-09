@@ -1,0 +1,13 @@
+{
+  "name": "@climateshield/shared-types",
+  "version": "0.1.0",
+  "description": "Shared TypeScript data contracts and types for ClimateShield",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

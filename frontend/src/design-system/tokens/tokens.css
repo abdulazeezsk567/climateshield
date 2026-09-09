@@ -1,0 +1,77 @@
+/* =============================================================================
+   ClimateShield Design Tokens (CSS Custom Properties)
+   Satin Finserv Climate-Risk Intelligence Layer
+   ============================================================================= */
+
+:root {
+  /* Surface and Background Foundations (Dark Command Center by Default) */
+  --cs-surface-ground: #080D17;        /* Deepest obsidian navy */
+  --cs-surface-card: #0F172A;          /* Structured card surface */
+  --cs-surface-elevated: #182238;      /* Hover / dropdown / modal level */
+  --cs-surface-border: #23324E;        /* Crisp data boundary */
+  --cs-surface-border-subtle: #162033; /* Micro-divider line */
+
+  /* Primary Brand: Trust Navy & Finance Cobalt */
+  --cs-navy-950: #080D17;
+  --cs-navy-900: #0B111E;
+  --cs-navy-800: #0F172A;
+  --cs-navy-700: #182238;
+  --cs-navy-600: #23324E;
+  --cs-navy-500: #334466;
+  --cs-navy-400: #475D87;
+
+  /* Climate Telemetry & Water: Teal */
+  --cs-teal-600: #0F766E;
+  --cs-teal-500: #0D9488;
+  --cs-teal-400: #14B8A6;
+  --cs-teal-300: #5EEAD4;
+  --cs-teal-muted: rgba(13, 148, 136, 0.15);
+  --cs-teal-glow: rgba(13, 148, 136, 0.25);
+
+  /* SFL Institutional Accent & Growth: Imperial Gold / Amber */
+  --cs-gold-600: #D97706;
+  --cs-gold-500: #F59E0B;
+  --cs-gold-400: #FBBF24;
+  --cs-gold-300: #FDE68A;
+  --cs-gold-muted: rgba(245, 158, 11, 0.15);
+  --cs-gold-glow: rgba(245, 158, 11, 0.25);
+
+  /* Parametric Risk Tiers & Semantic Statuses */
+  --cs-status-low: #10B981;       /* Emerald: <40.0 index */
+  --cs-status-low-bg: rgba(16, 185, 129, 0.12);
+  --cs-status-moderate: #F59E0B;  /* Amber: 40.0 - 64.9 */
+  --cs-status-moderate-bg: rgba(245, 158, 11, 0.12);
+  --cs-status-high: #F97316;      /* Warm Orange: 65.0 - 84.9 */
+  --cs-status-high-bg: rgba(249, 115, 22, 0.12);
+  --cs-status-severe: #EF4444;    /* Crimson Alert: >=85.0 or Trigger Breach */
+  --cs-status-severe-bg: rgba(239, 68, 68, 0.12);
+  --cs-status-info: #0284C7;      /* Technical Telemetry Sky */
+  --cs-status-info-bg: rgba(2, 132, 199, 0.12);
+
+  /* Text & Foreground */
+  --cs-text-primary: #F8FAFC;     /* Off-white maximum contrast */
+  --cs-text-secondary: #94A3B8;   /* Slate readability */
+  --cs-text-muted: #64748B;       /* Low-priority metadata */
+
+  /* Typography Stack */
+  --cs-font-serif: 'Newsreader', 'Fraunces', Georgia, serif;
+  --cs-font-sans: 'Plus Jakarta Sans', Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  --cs-font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* Transitions & Motion (Purposeful State Changes Only) */
+  --cs-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --cs-transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Mode Overrides (Optional / Stakeholder Presentation) */
+html:not(.dark) {
+  --cs-surface-ground: #F4F6F9;
+  --cs-surface-card: #FFFFFF;
+  --cs-surface-elevated: #F8FAFC;
+  --cs-surface-border: #CBD5E1;
+  --cs-surface-border-subtle: #E2E8F0;
+
+  --cs-text-primary: #0F172A;
+  --cs-text-secondary: #334155;
+  --cs-text-muted: #64748B;
+}

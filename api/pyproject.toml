@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "climateshield-api"
+version = "0.1.0"
+description = "FastAPI gateway service for ClimateShield"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "climateshield-shared",
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "pydantic-settings>=2.1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

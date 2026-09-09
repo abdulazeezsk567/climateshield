@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "climateshield-integration-layer"
+version = "0.1.0"
+description = "LMS webhook simulation, borrower alerts, and audit ledger for ClimateShield"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "climateshield-shared",
+    "pydantic>=2.5.0",
+    "httpx>=0.26.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,21 @@
+# ==============================================================================
+# ClimateShield Frontend Presentation Layer Containerfile
+# React + Vite application container for the SFL Risk Dashboard.
+# ==============================================================================
+
+FROM node:20-slim
+
+WORKDIR /app/frontend
+
+COPY frontend/package*.json ./
+RUN npm install
+
+COPY frontend ./
+
+EXPOSE 5173
+
+ENV VITE_API_BASE_URL=http://localhost:8000/api/v1 \
+    VITE_APP_TITLE="ClimateShield MSME Intelligence" \
+    VITE_ENABLE_DEMO_MODE=true
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]

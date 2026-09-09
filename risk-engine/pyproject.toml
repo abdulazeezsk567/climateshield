@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "climateshield-risk-engine"
+version = "0.1.0"
+description = "Parametric risk engine and ML zoning module for ClimateShield"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "climateshield-shared",
+    "pydantic>=2.5.0",
+    "numpy>=1.26.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

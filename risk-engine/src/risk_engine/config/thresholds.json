@@ -1,0 +1,109 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-09-09",
+  "description": "Sector-specific parametric trigger thresholds for MSME climate relief.",
+  "sectors": {
+    "AGRI_ALLIED": {
+      "rainfall_deficit_pct": -35.0,
+      "excess_rainfall_percentile": 90.0,
+      "heatwave_consecutive_days": 3,
+      "ndvi_vegetation_stress_pct": -25.0,
+      "priority_weight": 1.0,
+      "deficit_action": {
+        "action_type": "EMI_DEFERRAL",
+        "relief_period_days": 30,
+        "policy_code": "POL-AGRI-DEFICIT-30D"
+      },
+      "excess_action": {
+        "action_type": "RECOVERY_TOPUP",
+        "topup_percentage": 0.10,
+        "policy_code": "POL-AGRI-EXCESS-TOP10"
+      }
+    },
+    "DAIRY_LIVESTOCK": {
+      "rainfall_deficit_pct": -40.0,
+      "excess_rainfall_percentile": 92.0,
+      "heatwave_consecutive_days": 3,
+      "ndvi_vegetation_stress_pct": -30.0,
+      "priority_weight": 0.85,
+      "deficit_action": {
+        "action_type": "EMI_DEFERRAL",
+        "relief_period_days": 30,
+        "policy_code": "POL-DAIRY-DEFICIT-30D"
+      },
+      "excess_action": {
+        "action_type": "RECOVERY_TOPUP",
+        "topup_percentage": 0.10,
+        "policy_code": "POL-DAIRY-EXCESS-TOP10"
+      }
+    },
+    "HANDLOOMS_TEXTILES": {
+      "rainfall_deficit_pct": -55.0,
+      "excess_rainfall_percentile": 95.0,
+      "heatwave_consecutive_days": 5,
+      "ndvi_vegetation_stress_pct": -50.0,
+      "priority_weight": 0.60,
+      "deficit_action": {
+        "action_type": "EMI_DEFERRAL",
+        "relief_period_days": 30,
+        "policy_code": "POL-HANDLOOM-DEFICIT-30D"
+      },
+      "excess_action": {
+        "action_type": "RECOVERY_TOPUP",
+        "topup_percentage": 0.05,
+        "policy_code": "POL-HANDLOOM-EXCESS-TOP5"
+      }
+    },
+    "FOOD_PROCESSING": {
+      "rainfall_deficit_pct": -40.0,
+      "excess_rainfall_percentile": 92.0,
+      "heatwave_consecutive_days": 3,
+      "ndvi_vegetation_stress_pct": -30.0,
+      "priority_weight": 0.80,
+      "deficit_action": {
+        "action_type": "EMI_DEFERRAL",
+        "relief_period_days": 30,
+        "policy_code": "POL-FOOD-DEFICIT-30D"
+      },
+      "excess_action": {
+        "action_type": "RECOVERY_TOPUP",
+        "topup_percentage": 0.10,
+        "policy_code": "POL-FOOD-EXCESS-TOP10"
+      }
+    },
+    "RETAIL_MICRO_ENTERPRISE": {
+      "rainfall_deficit_pct": -50.0,
+      "excess_rainfall_percentile": 95.0,
+      "heatwave_consecutive_days": 4,
+      "ndvi_vegetation_stress_pct": -50.0,
+      "priority_weight": 0.50,
+      "deficit_action": {
+        "action_type": "EMI_DEFERRAL",
+        "relief_period_days": 30,
+        "policy_code": "POL-RETAIL-DEFICIT-30D"
+      },
+      "excess_action": {
+        "action_type": "RECOVERY_TOPUP",
+        "topup_percentage": 0.05,
+        "policy_code": "POL-RETAIL-EXCESS-TOP5"
+      }
+    },
+    "SERVICES_LIGHT_MANUFACTURING": {
+      "rainfall_deficit_pct": -50.0,
+      "excess_rainfall_percentile": 95.0,
+      "heatwave_consecutive_days": 4,
+      "ndvi_vegetation_stress_pct": -50.0,
+      "priority_weight": 0.55,
+      "deficit_action": {
+        "action_type": "EMI_DEFERRAL",
+        "relief_period_days": 30,
+        "policy_code": "POL-MFG-DEFICIT-30D"
+      },
+      "excess_action": {
+        "action_type": "RECOVERY_TOPUP",
+        "topup_percentage": 0.05,
+        "policy_code": "POL-MFG-EXCESS-TOP5"
+      }
+    }
+  }
+}

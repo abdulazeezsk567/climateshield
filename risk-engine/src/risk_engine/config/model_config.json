@@ -1,0 +1,44 @@
+{
+  "model_name": "ClimateShield-ExplainableZoning-LR",
+  "version": "1.0.0",
+  "algorithm": "LogisticRegression-CalibratedLinear",
+  "intended_use": "Decision-support vulnerability scoring on a 0-100 continuous index. Not a deterministic prediction of individual default.",
+  "features": [
+    "rainfall_deficit_ratio",
+    "extreme_rain_ratio",
+    "temperature_anomaly_celsius",
+    "vegetation_stress_delta",
+    "sector_vulnerability_weight",
+    "credit_exposure_ratio"
+  ],
+  "coefficients": {
+    "rainfall_deficit_ratio": 2.45,
+    "extreme_rain_ratio": 2.10,
+    "temperature_anomaly_celsius": 0.42,
+    "vegetation_stress_delta": 1.85,
+    "sector_vulnerability_weight": 1.65,
+    "credit_exposure_ratio": 0.35
+  },
+  "intercept": -2.50,
+  "scaling_bounds": {
+    "min_score": 0.0,
+    "max_score": 100.0,
+    "moderate_risk_cutoff": 40.0,
+    "high_risk_cutoff": 65.0,
+    "severe_risk_cutoff": 85.0
+  },
+  "sector_weights": {
+    "AGRI_ALLIED": 1.0,
+    "DAIRY_LIVESTOCK": 0.85,
+    "FOOD_PROCESSING": 0.80,
+    "HANDLOOMS_TEXTILES": 0.60,
+    "SERVICES_LIGHT_MANUFACTURING": 0.55,
+    "RETAIL_MICRO_ENTERPRISE": 0.50
+  },
+  "limitations": [
+    "Scores represent vulnerability likelihood distributions, not individual borrower default certainties.",
+    "Macro-level satellite observations (NDVI) may exhibit pixel-level lag or cloud contamination.",
+    "Ground-level micro-drainage or borrower-specific irrigation assets are not captured in gridded telemetry.",
+    "Decisions must incorporate field officer validation and human-in-the-loop review."
+  ]
+}

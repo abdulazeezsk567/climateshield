@@ -1,0 +1,30 @@
+# ==============================================================================
+# ClimateShield Action & Integration Layer Daemon Containerfile
+# Background worker for LMS action queue processing and cryptographic audit ledger verification.
+# ==============================================================================
+
+FROM python:3.11-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    SERVICE_NAME=climateshield-integration-layer
+
+WORKDIR /app
+
+COPY packages/shared/python /app/packages/shared/python
+RUN pip install -e /app/packages/shared/python
+
+COPY data-layer /app/data-layer
+RUN pip install -e /app/data-layer
+
+COPY integration-layer /app/integration-layer
+RUN pip install -e /app/integration-layer
+
+RUN mkdir -p /app/data && chmod -R 777 /app/data
+
+RUN useradd -u 10001 -m -s /bin/bash appuser && \
+    chown -R appuser:appuser /app
+USER appuser
+
+CMD ["python", "-m", "integration_layer"]
