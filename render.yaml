@@ -1,0 +1,30 @@
+# ==============================================================================
+# ClimateShield Render Infrastructure Blueprint (render.yaml)
+# Enables one-click cloud deployment on Render (https://render.com)
+# ==============================================================================
+
+services:
+  # 1. FastAPI Gateway Web Service
+  - type: web
+    name: climateshield-api
+    runtime: docker
+    dockerfilePath: infra/docker/Dockerfile.api
+    dockerContext: .
+    plan: free
+    region: oregon
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: development
+      - key: PORT
+        value: 8000
+      - key: HOST
+        value: 0.0.0.0
+      - key: LOG_LEVEL
+        value: info
+      - key: LOG_FORMAT
+        value: json
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_ORIGINS
+        value: http://localhost:5173,https://climateshield.vercel.app
