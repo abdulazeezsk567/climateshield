@@ -60,10 +60,11 @@ def create_application() -> FastAPI:
     # Attach centralized, sanitized error handlers
     register_error_handlers(app)
 
-    # CORS configuration
+    # CORS configuration (explicit origins + Vercel app domain matching)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins_list,
+        allow_origin_regex=r"https://.*\.vercel\.app",
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
